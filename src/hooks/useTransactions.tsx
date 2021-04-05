@@ -1,7 +1,7 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 
-export const TransactionsContext = createContext<ITransactionsContextData>(
+const TransactionsContext = createContext<ITransactionsContextData>(
   {} as ITransactionsContextData
   );
 
@@ -34,4 +34,10 @@ export function TransactionsProvider({children}: ITransactionsProviderProps){
       {children}
     </TransactionsContext.Provider>
   )
+}
+
+export function useTransactions(){
+  const context = useContext(TransactionsContext);
+
+  return context;
 }

@@ -1,11 +1,12 @@
 import { FormEvent, useCallback, useState, useContext } from "react"
 import Modal from "react-modal"
-import { TransactionsContext } from "../../context/TransactionsContext"
+
 import incomeImg from "../../assets/income.svg"
 import outcomeImg from "../../assets/outcome.svg"
 import { Container, TransasctionTypeContainer, RadioBox } from "./styles"
 
 import closeImage from "../../assets/close.svg"
+import { useTransactions } from "../../hooks/useTransactions"
 
 export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionModalProps){
   
@@ -14,7 +15,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionM
   const [ amount, setAmount ] = useState(0);
   const [ category, setCategory ] = useState('');
 
-  const {createTransaction} = useContext(TransactionsContext)
+  const {createTransaction} = useTransactions();
   
   const handleCreateNewTransaction = useCallback(async (event: FormEvent) => {
     event.preventDefault();
