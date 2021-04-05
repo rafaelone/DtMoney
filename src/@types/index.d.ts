@@ -20,3 +20,14 @@ interface ITransaction {
   category: string;
   createdAt: string;
 }
+
+interface ITransactionsProviderProps {
+  children: ReactNode;
+}
+
+type TransactionInput = Omit<ITransaction, 'id' | 'createdAt'>
+
+interface ITransactionsContextData {
+  transactions: ITransaction[];
+  createTransaction: (transaction: TransactionInput) => Promise<void>;
+}
